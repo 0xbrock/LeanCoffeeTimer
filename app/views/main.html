@@ -1,0 +1,35 @@
+<!-- Countdown: {{main.countdown}}<br>
+Counter: {{main.counter}} -->
+<div class="jumbotron" ng-show="!main.timeAlert">
+    <h1>Lean Coffee Time!</h1>
+    <h2>
+        <timer countdown="main.countdown" max-time-unit="'minute'" interval="1000" autostart="false">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
+    </h2>
+    <p>
+        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="!main.timerRunning">Splendid!<span class="glyphicon glyphicon-ok"></span></a>
+        <a class="btn btn-lg btn-warning" ng-click="main.stopTimer()" ng-show="main.timerRunning">Stop<span class="glyphicon glyphicon-cancel"></span></a>
+        <a class="btn btn-lg btn-danger" ng-click="main.resetTimer()">Reset<span class="glyphicon glyphicon-cancel"></span></a>
+    </p>
+</div>
+
+<div class="jumbotron" ng-show="main.timeAlert == true">
+    <h1>TIME!</h1>
+    <h2>&nbsp;</h2>
+    <p>
+        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="main.countdown > 0">{{main.countdown}} More? <span class="glyphicon glyphicon-ok"></span></a>
+        <a class="btn btn-lg btn-info" ng-click="main.resetTimer()">New Topic <span class="glyphicon glyphicon-pause"></span></a>
+    </p>
+</div>
+
+<!--<div class="row marketing">
+    <h4>HTML5 Boilerplate</h4>
+    <p>
+        HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+    </p>
+    <h4>Angular</h4>
+    <p>
+        AngularJS is a toolset for building the framework most suited to your application development.
+    </p>
+    <h4>Karma</h4>
+    <p>Spectacular Test Runner for JavaScript.</p>
+</div>-->
