@@ -5,6 +5,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -20,7 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
+    <section class=""><!-- header -->
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -40,20 +41,28 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/leancoffee">Lean Coffee</a></li>
+              <!-- <li><a href="https://github.com/0xbrock/LeanCoffeeTimer">View on GitHub</a></li> -->
               <!--<li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/">Contact</a></li>-->
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://github.com/0xbrock/LeanCoffeeTimer" target="_blank">Source on GitHub</a></li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
+    <section>
+      <div ng-view=""></div>
+    </section>
 
     <div class="footer">
       <div class="container">
+        <a href="https://github.com/0xbrock/LeanCoffeeTimer" class="btn">View on GitHub</a> |
+        <a href="https://github.com/0xbrock/LeanCoffeeTimer/zipball/master" class="btn">Download .zip</a> |
+        <a href="https://github.com/0xbrock/LeanCoffeeTimer/tarball/master" class="btn">Download .tar.gz</a>
         <p>&copy; 2015 Brock Moeller</p>
       </div>
     </div>
@@ -79,6 +88,7 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <!-- endbower -->
     <script src="bower_components/momentjs/min/moment.min.js"></script>

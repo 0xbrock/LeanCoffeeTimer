@@ -1,35 +1,52 @@
-<!-- Countdown: {{main.countdown}}<br>
-Counter: {{main.counter}} -->
-<div class="jumbotron" ng-show="!main.timeAlert">
-    <h1>Lean Coffee Time!</h1>
-    <h2>
+<section class="page-header1" ng-show="!main.timeAlert">
+    <h1 class="project-name">Lean Coffee Time!</h1>
+    <h2 class="project-tagline">
         <timer countdown="main.countdown" max-time-unit="'minute'" interval="1000" autostart="false">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
     </h2>
     <p>
-        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="!main.timerRunning">Splendid!<span class="glyphicon glyphicon-ok"></span></a>
-        <a class="btn btn-lg btn-warning" ng-click="main.stopTimer()" ng-show="main.timerRunning">Stop<span class="glyphicon glyphicon-cancel"></span></a>
-        <a class="btn btn-lg btn-danger" ng-click="main.resetTimer()">Reset<span class="glyphicon glyphicon-cancel"></span></a>
+        <a class="btn btn-lg btn-warning" ng-click="main.stopTimer()" ng-show="main.timerRunning">Pause&nbsp;&nbsp;<span class="glyphicon glyphicon-pause"></span></a>&nbsp;&nbsp;
+        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="!main.timerRunning">Start!&nbsp;&nbsp;<span class="glyphicon glyphicon-play"></span></a>&nbsp;&nbsp;
+        <a class="btn btn-lg btn-danger" ng-click="main.resetTimer()">Reset&nbsp;&nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
     </p>
-</div>
+</section>
 
-<div class="jumbotron" ng-show="main.timeAlert == true">
-    <h1>TIME!</h1>
-    <h2>&nbsp;</h2>
+<section class="page-header1" ng-show="main.timeAlert == true">
+    <h1 class="project-name">TIME!</h1>
+    <h2 class="project-tagline">&nbsp;</h2>
     <p>
-        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="main.countdown > 0">{{main.countdown}} More? <span class="glyphicon glyphicon-ok"></span></a>
-        <a class="btn btn-lg btn-info" ng-click="main.resetTimer()">New Topic <span class="glyphicon glyphicon-pause"></span></a>
+        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="main.countdown > 0">{{main.countdown}} More?&nbsp;&nbsp;<span class="glyphicon glyphicon-play"></span></a>&nbsp;&nbsp;
+        <a class="btn btn-lg btn-info" ng-click="main.reinitTimer()">New Topic&nbsp;&nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
     </p>
-</div>
+</section>
+<!-- InitialCountdown: {{main.initialCountdown}}<br>
+Countdown: {{main.countdown}}<br>
+Counter: {{main.counter}} -->
+<section class="container">
+    <br />
+    <h2 class="page-header">Settings</h2>
 
-<!--<div class="row marketing">
-    <h4>HTML5 Boilerplate</h4>
-    <p>
-        HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-    </p>
-    <h4>Angular</h4>
-    <p>
-        AngularJS is a toolset for building the framework most suited to your application development.
-    </p>
-    <h4>Karma</h4>
-    <p>Spectacular Test Runner for JavaScript.</p>
-</div>-->
+      <div class="row">
+    <form name="settings" class="form-horizontal">
+        <div class="form-group">
+          <label for="initialcountdown" class="col-sm-7 control-label">Initial countdown time (seconds):</label>
+          <div class="col-sm-2">
+          <input type="text" class="form-control" ng-model="main.initialCountdown" id="initialcountdown">
+          <span class="danger-text" ng-if="settings.initialcountdown.$invalid">
+             ERROR!
+          </span>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="decrement" class="col-sm-7 control-label">Countdown expriation decrement (seconds):</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" ng-model="main.decrement" id="decrement">
+            <span class="danger-text" ng-if="settings.decrement.$invalid">
+               ERROR!
+            </span>
+          </div>
+        </div>
+    </form>
+      </div>
+
+  </div>
+</section>
