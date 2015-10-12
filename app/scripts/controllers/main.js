@@ -10,8 +10,8 @@
 angular.module('leanCoffeeTimerApp')
     .controller('MainCtrl', ['$scope', '$timeout', function (scope, timeout) {
         var vm = this;
-        vm.initialCountdown = 3; //300;
-        vm.decrement = 1; // 60
+        vm.initialCountdown = 300; //3 300;
+        vm.decrement = 60; //1 60
         vm.countdown = vm.initialCountdown;
         vm.timerRunning = false;
         vm.timeAlert = false;
