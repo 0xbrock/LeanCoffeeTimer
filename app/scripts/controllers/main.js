@@ -13,8 +13,8 @@ angular.module('leanCoffeeTimerApp')
         vm.normalTitle = "Lean Coffee Time!";
         vm.pageTitle = vm.normalTitle;
         vm.timeAlertText = "TIME!";
-        vm.initialCountdown = 3; //3 300;
-        vm.decrement = 1; //1 60
+        vm.initialCountdown = 300; //3 300;
+        vm.decrement = 60; //1 60
         vm.countdown = vm.initialCountdown;
         vm.timerRunning = false;
         vm.timeAlert = false;
