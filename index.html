@@ -1,10 +1,86 @@
-<!doctype html> <html> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/main.7dbe39ff.css"> </head> <body ng-app="leanCoffeeTimerApp"> <!--[if lte IE 8]>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lean Coffee Timer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="A helpfull lean coffee timer. An agile coffee timer.">
+    <link rel=”author” href="https://github.com/0xbrock" />
+    <link rel=”publisher” href="http://intellectualponderings.blogspot.com/"/>
+    <meta name="keywords" content="timer,lean coffee,agile coffee,lean coffee timer,agile coffee timer,meetings,agenda,productivity,scrum,agile">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta property=”og:title” content=”Lean Coffee Timer”/>
+    <meta property=”og:type” content="website"/>
+    <meta property=”og:url” content="https://0xbrock.github.io/LeanCoffeeTimer/"/>
+    <meta property=”og:description” content="A helpfull timer to facilitate lean coffee meetings or agile coffee meetings."/>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/main.7dbe39ff.css">
+  </head>
+  <body ng-app="leanCoffeeTimerApp">
+    <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--> <!-- Add your site or application content here --> <section class=""><!-- header --> <div class="navbar navbar-default" role="navigation"> <div class="container"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#/">Lean Coffee Timer</a> </div> <div class="collapse navbar-collapse" id="js-navbar-collapse"> <ul class="nav navbar-nav"> <li class="active"><a href="#/">Home</a></li> <li><a ng-href="#/leancoffee">Lean Coffee</a></li> <!-- <li><a href="https://github.com/0xbrock/LeanCoffeeTimer">View on GitHub</a></li> --> <!--<li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>--> </ul> <ul class="nav navbar-nav navbar-right"> <li><a href="https://github.com/0xbrock/LeanCoffeeTimer" target="_blank">Source on GitHub</a></li> </ul> </div> </div> </div> </section> <section> <div ng-view=""></div> </section> <div class="footer"> <div class="container"> <a href="https://github.com/0xbrock/LeanCoffeeTimer" class="btn">View on GitHub</a> | <a href="https://github.com/0xbrock/LeanCoffeeTimer/zipball/master" class="btn">Download .zip</a> | <a href="https://github.com/0xbrock/LeanCoffeeTimer/tarball/master" class="btn">Download .tar.gz</a> <p>&copy; 2015 Brock Moeller</p> </div> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>!function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <section class=""><!-- header -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/">Lean Coffee Timer</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a ng-href="#/leancoffee">Lean Coffee</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://github.com/0xbrock/LeanCoffeeTimer" target="_blank">Source on GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div ng-view=""></div>
+    </section>
+
+    <div class="footer">
+      <div class="container">
+        <a href="https://github.com/0xbrock/LeanCoffeeTimer" class="btn">View on GitHub</a> |
+        <a href="https://github.com/0xbrock/LeanCoffeeTimer/zipball/master" class="btn">Download .zip</a> |
+        <a href="https://github.com/0xbrock/LeanCoffeeTimer/tarball/master" class="btn">Download .tar.gz</a>
+        <p>&copy; 2015 Brock Moeller</p>
+      </div>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
        ga('create', 'UA-53762303-3', 'auto');
-       ga('send', 'pageview');</script> <script src="scripts/vendor.1ac4a502.js"></script> <script src="scripts/scripts.dc688e7a.js"></script> </body> </html>
+       ga('send', 'pageview');
+    </script>
+
+    <script src="scripts/vendor.1ac4a502.js"></script>
+
+        <script src="scripts/scripts.bc9c1b46.js"></script>
+</body>
+</html>
