@@ -8,60 +8,64 @@
  * Controller of the leanCoffeeTimerApp
  */
 angular.module('leanCoffeeTimerApp')
-    .controller('MainCtrl', ['$scope', '$timeout', function (scope, timeout) {
+    .controller('MainCtrl', ['$scope', '$timeout', '$window', function (scope, timeout, window) {
         var vm = this;
-        vm.initialCountdown = 300; //3 300;
-        vm.decrement = 60; //1 60
+        vm.normalTitle = "Lean Coffee Time!";
+        vm.pageTitle = vm.normalTitle;
+        vm.timeAlertText = "TIME!";
+        vm.initialCountdown = 3; //3 300;
+        vm.decrement = 1; //1 60
         vm.countdown = vm.initialCountdown;
         vm.timerRunning = false;
         vm.timeAlert = false;
 
         vm.startTimer = function () {
             scope.$broadcast('timer-start');
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = true;
             vm.audioPlayer[0].play();
+            vm.log("Timer", "Start", vm.countdown);
         };
 
         vm.stopTimer = function () {
             scope.$broadcast('timer-stop');
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = false;
             vm.audioPlayer[0].play();
+            vm.log("Timer", "Stop");
         };
 
         vm.resetTimer = function () {
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = false;
-            //var a = $("timer")[0];
             vm.countdown = vm.initialCountdown;
             scope.$broadcast('timer-reset');
-            // scope.$broadcast('timer-set-countdown', vm.countdown);
-            // scope.$broadcast('timer-reset');
             vm.audioPlayer[0].play();
+            vm.log("Timer", "Reset", vm.countdown);
         };
 
         vm.reinitTimer = function () {
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = false;
             vm.countdown = vm.initialCountdown;
-            setTimeout(function(){ scope.$broadcast('timer-reset'); }, 300);
-            //scope.$broadcast('timer-set-countdown', vm.countdown);
-            // scope.$broadcast('timer-reset');
-
+            scope.$broadcast('timer-reset');
             vm.audioPlayer[0].play();
-
+            vm.log("Timer", "NextTopic", vm.countdown);
         };
 
         vm.decrementStart = function() {
           vm.countdown -= vm.decrement;
+          scope.$broadcast('timer-reset');
           vm.startTimer();
         };
 
         vm.timerAlert = function() {
-            scope.$broadcast('timer-stop');
+            vm.pageTitle = vm.timeAlertText;
             vm.audioPlayer[0].play();
-            vm.countdown -= vm.decrement;
             vm.timeAlert = true;
             vm.timerRunning = false;
             console.log("TIMER ALERT");
@@ -129,4 +133,10 @@ angular.module('leanCoffeeTimerApp')
             src: base64EnodedTone,
             controls: false
         });
+
+        vm.log = function(category, action, value) {
+          if (window && window.ga) {
+            window.ga('send', 'event', category, action, null, value);
+          }
+        }
   }]);

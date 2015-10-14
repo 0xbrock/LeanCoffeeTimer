@@ -1,15 +1,18 @@
-<section class="page-header1" ng-show="!main.timeAlert">
-    <h1 class="project-name">Lean Coffee Time!</h1>
+<section class="page-header1">
+    <h1 class="project-name">{{main.pageTitle}}</h1>
     <h2 class="project-tagline">
         <timer countdown="main.countdown" max-time-unit="'minute'" interval="1000" autostart="false">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
     </h2>
     <p>
-        <a class="btn btn-lg btn-warning" ng-click="main.stopTimer()" ng-show="main.timerRunning">Pause&nbsp;&nbsp;<span class="glyphicon glyphicon-pause"></span></a>&nbsp;&nbsp;
-        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="!main.timerRunning">Start!&nbsp;&nbsp;<span class="glyphicon glyphicon-play"></span></a>&nbsp;&nbsp;
-        <a class="btn btn-lg btn-danger" ng-click="main.resetTimer()">Reset&nbsp;&nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+        <a class="btn btn-lg btn-warning" ng-click="main.stopTimer()" ng-show="main.timerRunning && !main.timeAlert">Pause&nbsp;&nbsp;<span class="glyphicon glyphicon-pause"></span></a>&nbsp;&nbsp;
+        <a class="btn btn-lg btn-success" ng-click="main.startTimer()" ng-show="!main.timerRunning && !main.timeAlert">Start!&nbsp;&nbsp;<span class="glyphicon glyphicon-play"></span></a>&nbsp;&nbsp;
+        <a class="btn btn-lg btn-danger" ng-click="main.resetTimer()" ng-show="!main.timeAlert">Reset&nbsp;&nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+
+        <a class="btn btn-lg btn-success" ng-click="main.decrementStart()" ng-show="main.countdown > 1 && main.timeAlert">{{main.countdown-main.decrement}} More?&nbsp;&nbsp;<span class="glyphicon glyphicon-play"></span></a>&nbsp;&nbsp;
+        <a class="btn btn-lg btn-info" ng-click="main.resetTimer()" ng-show="main.timeAlert">New Topic&nbsp;&nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
     </p>
 </section>
-
+<!--
 <section class="page-header1" ng-show="main.timeAlert == true">
     <h1 class="project-name">TIME!</h1>
     <h2 class="project-tagline">&nbsp;</h2>
@@ -18,9 +21,7 @@
         <a class="btn btn-lg btn-info" ng-click="main.reinitTimer()">New Topic&nbsp;&nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
     </p>
 </section>
-<!-- InitialCountdown: {{main.initialCountdown}}<br>
-Countdown: {{main.countdown}}<br>
-Counter: {{main.counter}} -->
+ -->
 <section class="container">
     <br />
     <h2 class="page-header">Settings</h2>
