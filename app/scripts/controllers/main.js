@@ -8,87 +8,77 @@
  * Controller of the leanCoffeeTimerApp
  */
 angular.module('leanCoffeeTimerApp')
-    .controller('MainCtrl', ['$scope', '$timeout', function (scope, timeout) {
+    .controller('MainCtrl', ['$scope', '$timeout', '$window', function (scope, timeout, window) {
         var vm = this;
-        vm.initialCountdown = 6; //300;
-        vm.decrement = 2; // 60
+        vm.normalTitle = "Lean Coffee Time!";
+        vm.pageTitle = vm.normalTitle;
+        vm.timeAlertText = "TIME!";
+        vm.initialCountdown = 300; //3 300;
+        vm.decrement = 60; //1 60
         vm.countdown = vm.initialCountdown;
         vm.timerRunning = false;
         vm.timeAlert = false;
 
         vm.startTimer = function () {
             scope.$broadcast('timer-start');
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = true;
             vm.audioPlayer[0].play();
+            vm.log("Timer", "Start", vm.countdown);
         };
 
         vm.stopTimer = function () {
             scope.$broadcast('timer-stop');
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = false;
             vm.audioPlayer[0].play();
+            vm.log("Timer", "Stop");
         };
 
         vm.resetTimer = function () {
-            scope.$broadcast('timer-stop');
+            vm.pageTitle = vm.normalTitle;
             vm.timeAlert = false;
             vm.timerRunning = false;
-            var a = $("timer")[0];
             vm.countdown = vm.initialCountdown;
-            a.countdown = vm.countdown;
-             // clear
-            scope.$broadcast('timer-set-countdown', vm.countdown);
+            scope.$broadcast('timer-reset');
             vm.audioPlayer[0].play();
+            vm.log("Timer", "Reset", vm.countdown);
+        };
+
+        vm.reinitTimer = function () {
+            vm.pageTitle = vm.normalTitle;
+            vm.timeAlert = false;
+            vm.timerRunning = false;
+            vm.countdown = vm.initialCountdown;
+            scope.$broadcast('timer-reset');
+            vm.audioPlayer[0].play();
+            vm.log("Timer", "NextTopic", vm.countdown);
+        };
+
+        vm.decrementStart = function() {
+          vm.countdown -= vm.decrement;
+          scope.$broadcast('timer-reset');
+          vm.startTimer();
         };
 
         vm.timerAlert = function() {
-            // scope.$broadcast('timer-set-countdown', vm.countdown);
-            scope.$broadcast('timer-stop');
-
+            vm.pageTitle = vm.timeAlertText;
             vm.audioPlayer[0].play();
-            vm.countdown -= vm.decrement;
-            //scope.$broadcast('timer-set-countdown', vm.countdown);
             vm.timeAlert = true;
             vm.timerRunning = false;
             console.log("TIMER ALERT");
         };
 
-        // Having issues w/ Angular-Timer, may have to build this pattern out.
-        // vm.counter = 60;
-        // vm.onTimeout = function () {
-        //     vm.counter--;
-        //     if (vm.counter > 0)
-        //         vm.mytimeout = timeout(vm.onTimeout, 1000);
-        //     else
-        //         console.log("TIMEOUT ALERT");
-        // }
-        // vm.mytimeout = timeout(vm.onTimeout, 1000);
-        //
-        // vm.stop = function () {
-        //     $timeout.cancel(mytimeout);
-        // }
-
-        // OR use setInterval
-        // $scope.countDown = 10;
-        // var timer = setInterval(function(){
-        //     $scope.countDown--;
-        //     $scope.$apply();
-        //     console.log($scope.countDown);
-        // }, 1000);
-
         scope.viewModel = vm;
         scope.$on('timer-tick', function (event, args) {
             //console.log(scope.timerType + ' - event.name = ' + event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis);
             if (args.millis == 0) {
-                vm.timerAlert();
+                scope.viewModel.timerAlert();
                 scope.$apply();
             }
         });
-
-        /*scope.$on('timer-stopped', function (event, data) {
-            console.log('Timer Stopped - data = ', data);
-        });*/
 
         // Based on http://stackoverflow.com/questions/17130673/playing-audio-from-dataurl-google-chrome-mobile
         this.encodeAudio16bit = function (data, sampleRate) {
@@ -108,17 +98,10 @@ angular.module('leanCoffeeTimerApp')
                 header = header.replace('<##>', bytes);
             }
 
-            // ChunkSize
-            insertLong(36 + n * 2);
-
-            // SampleRate
-            insertLong(sampleRate);
-
-            // ByteRate
-            insertLong(sampleRate * 2);
-
-            // Subchunk2Size
-            insertLong(n * 2);
+            insertLong(36 + n * 2); // ChunkSize
+            insertLong(sampleRate); // SampleRate
+            insertLong(sampleRate * 2); // ByteRate
+            insertLong(n * 2); // Subchunk2Size
 
             // Output sound data
             for (var i = 0; i < n; ++i) {
@@ -143,13 +126,17 @@ angular.module('leanCoffeeTimerApp')
 
         var sampleRate = 44100; // hz
         var freq = 432;   // hz
-        var duration = .5; // seconds
+        var duration = .25; // seconds
         var tone = this.generateTone(freq, sampleRate, duration);
         var base64EnodedTone = this.encodeAudio16bit(tone, sampleRate);
         vm.audioPlayer = $('<audio>').attr({
             src: base64EnodedTone,
-            controls: true
+            controls: false
         });
-        //vm.audioPlayer.bind("timeupdate", this.TimeUpdate)
-        //$("#body").append(this.audioPlayer);
+
+        vm.log = function(category, action, value) {
+          if (window && window.ga) {
+            window.ga('send', 'event', category, action, null, value);
+          }
+        }
   }]);
