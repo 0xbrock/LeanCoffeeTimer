@@ -10,12 +10,8 @@
  */
 angular
   .module('leanCoffeeTimerApp', [
-    //'ngAnimate',
-    //'ngCookies',
     'ngResource',
     'ngRoute',
-    //'ngSanitize',
-    //'ngTouch',
     'timer'
   ])
   .config(['$routeProvider', function ($routeProvider) {
