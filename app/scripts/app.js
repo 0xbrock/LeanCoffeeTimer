@@ -12,7 +12,8 @@ angular
   .module('leanCoffeeTimerApp', [
     'ngResource',
     'ngRoute',
-    'timer'
+    'timer',
+    'audio'
   ])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
